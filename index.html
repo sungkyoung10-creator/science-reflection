@@ -198,7 +198,22 @@ footer{font-size:12px;color:var(--muted)}
   .meter.big .v{font-size:22px}
   .meter .v{font-size:16px;margin-top:4px}
 }
-/* 휴대폰 가로 + 주소창: 제목줄 없애고 회로를 화면 높이 전체로 */
+/* 가로 화면(태블릿·휴대폰 공통): 제목 없애고 회로를 화면 높이 전체로, 버튼은 오른쪽 위 */
+@media (orientation:landscape) and (min-width:600px), (orientation:landscape) and (max-height:520px){
+  .wrap{display:grid;grid-template-columns:minmax(0,1fr) clamp(280px,27vw,340px);grid-template-rows:auto minmax(0,1fr);
+    grid-template-areas:"stage tools" "stage panel";gap:10px 12px}
+  header,.main{display:contents}
+  header > div:first-child,.rotate,footer{display:none}
+  .tools{grid-area:tools;flex-wrap:nowrap;gap:8px;justify-content:space-between}
+  .seg{flex:1;min-width:0}
+  .seg button{flex:1;padding:8px 6px;font-size:15px;white-space:nowrap}
+  .fs .lbl{display:none}
+  .stage{grid-area:stage;min-height:0}
+  .panel{grid-area:panel;min-height:0}
+  .toggles{display:grid;grid-template-columns:repeat(3,1fr)}
+  .chip{padding-inline:4px;white-space:nowrap}
+}
+/* 휴대폰 가로 + 주소창: 더 촘촘하게 */
 @media (orientation:landscape) and (max-height:520px){
   body{padding-block:max(4px,env(safe-area-inset-top,0px)) max(4px,env(safe-area-inset-bottom,0px))}
   .wrap{display:grid;grid-template-columns:minmax(0,1fr) clamp(200px,29vw,260px);grid-template-rows:auto minmax(0,1fr);
@@ -255,7 +270,7 @@ footer{font-size:12px;color:var(--muted)}
 
   <div class="main">
     <section class="stage" aria-label="전기 회로">
-      <svg id="circuit" viewBox="0 40 1000 555" preserveAspectRatio="xMidYMid meet" role="img" aria-label="전지, 전류계, 저항이 연결된 회로">
+      <svg id="circuit" viewBox="34 40 932 555" preserveAspectRatio="xMidYMid meet" role="img" aria-label="전지, 전류계, 저항이 연결된 회로">
         <defs>
           <linearGradient id="cellBody" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#4b565a"/><stop offset=".45" stop-color="#2a3134"/><stop offset="1" stop-color="#15191b"/>
